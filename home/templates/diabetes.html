@@ -1,0 +1,169 @@
+{%extends 'base.html'%} 
+
+{%block content%}
+	<!-- banner 2 -->
+	<div class="inner-banner-w3ls">
+		<div class="container">
+
+		</div>
+		<!-- //banner 2 -->
+	</div>
+	<!-- page details -->
+	<div class="breadcrumb-agile">
+		<div aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+			</ol>
+		</div>
+	</div>
+	<!-- //page details -->
+
+<!-- contact -->
+<div class="agileits-contact py-5">
+  <div class="py-xl-5 py-lg-3">
+    <div class="w3ls-titles text-center mb-5">
+      <h3 class="title">Diabetes Disease Prediction</h3>
+      <span>
+        <i class="fas fa-user-md"></i>
+      </span>
+      <hr />
+      {% if context %}
+      <div class="display-4 my-2 text-center">
+        Your diabetes disease is {{ context }} 
+      </div>
+      {% endif %}
+    </div>
+    <div class="d-flex">
+      <div class="col-lg-5 w3_agileits-contact-left">
+      </div>
+      <div class="col-lg-7 contact-right-w3l">
+        <h5 class="title-w3 text-center mb-5">Get In Touch</h5>
+        <!-- start from here -->
+       
+        <form class="row" method="POST" action="{% url 'diabetes' %}">
+          {% csrf_token %}
+          <div class="col-md-6">
+            <label style="color: black;" >Pregnancies</label>
+            <div class="form-group">
+            
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="pregnancies"
+                value="0"
+                name="pregnancies"
+                placeholder="Pregnancies"
+              />
+            </div>
+            <label style="color: black;" >Glucose</label>
+            <div class="form-group">
+          
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="glucose"
+                value="0"
+                name="glucose"
+                placeholder="Glucose"
+              />
+            </div>
+            <label style="color: black;" >Blood Pressure</label>
+            <div class="form-group">
+             
+              <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="bloodpressure"
+                value="0"
+                name="bloodpressure"
+                placeholder="Blood Pressure"
+              />
+            </div>
+            <label style="color: black;" >Skinthickness</label>
+            <div class="form-group">
+             
+              <input
+              
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="skinthickness"
+                value="0"
+                name="skinthickness"
+              />
+            </div>
+            <label style="color: black;" >Insulin</label>
+            <div class="form-group">
+             
+              <input
+              
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="insulin"
+                value="0"
+                name="insulin"
+              />
+            </div>
+          </div>
+         
+          <div class="col-md-4">
+            <label style="color: black;" >BMI</label>
+            <div class="form-group">
+            
+              <input
+              
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="bmi"
+                value="0"
+                name="bmi"
+              />
+            </div>
+            <label style="color: black;" >Diabetes Prediction Function</label>
+            <div class="form-group">
+            
+              <input
+            
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="pedigree"
+                value="0"
+                name="pedigree"
+              />
+            </div>
+
+            <label style="color: black;" >Age</label>
+            <div class="form-group mb-5">
+             
+              <input
+              
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="age"
+                value="0"
+                name="age"
+              />
+            </div>
+            <button type="submit" class="btn-lg btn-block btn btn-primary mb-5">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //contact -->
+
+
+{% endblock %}
