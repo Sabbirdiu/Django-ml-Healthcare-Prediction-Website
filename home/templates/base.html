@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+    {% include "partials/head.html" %}
+
+<body>
+    {% include 'partials/navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'partials/footer.html' %}
+    {% include "partials/scripts.html" %}
+	
+</body>
+
+</html>    
