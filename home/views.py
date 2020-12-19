@@ -56,5 +56,6 @@ def diabetes(request):
                   'diabetes.html',
                   {
                       'context': value,
+                      
                   }
                   )
