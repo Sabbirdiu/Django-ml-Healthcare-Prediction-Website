@@ -1,0 +1,121 @@
+{%extends 'base.html'%} {%block content%}
+
+<div class="">
+    <div class="inner-banner-w3ls">
+		<div class="container">
+
+		</div>
+		<!-- //banner 2 -->
+    </div>
+    	<!-- page details -->
+	<div class="breadcrumb-agile">
+		<div aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">breast cancer </li>
+			</ol>
+		</div>
+    </div>
+   <!-- contact -->
+<div class="agileits-contact py-5">
+    <div class="py-xl-5 py-lg-3">
+      <div class="w3ls-titles text-center mb-5">
+        <h3 class="title">breast cancer  Prediction</h3>
+        <span>
+          <i class="fas fa-user-md"></i>
+        </span>
+        <hr />
+        {% if context %}
+        <div class="display-4 my-2 text-center">
+            You {{ context }} breast cancer.
+        </div>
+        {% endif %}
+      </div>
+      <div class="d-flex">
+        <div class="col-lg-5 w3_agileits-contact-left">
+        </div>
+        <div class="col-lg-7 contact-right-w3l">
+          <h5 class="title-w3 text-center mb-5">Get In Touch</h5>
+          <!-- start from here -->
+         
+          <form class="row" method="POST" action="{% url 'breast' %}">
+            {% csrf_token %}
+            <div class="col-md-6">
+              <label style="color: black;" >Mean Radius</label>
+              <div class="form-group">
+              
+                <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="radius"
+                value="0"
+                name="radius"
+                />
+              </div>
+              <label style="color: black;" >Mean Texture</label>
+              <div class="form-group">
+            
+                <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="texture"
+                value="0"
+                name="texture"
+                />
+              </div>
+              <label style="color: black;" >Mean Perimeter</label>
+              <div class="form-group">
+               
+                <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="perimeter"
+                value="0"
+                name="perimeter"
+                />
+              </div>
+              <label style="color: black;" >Mean Area</label>
+              <div class="form-group">
+               
+                <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="area"
+                value="0"
+                name="area"
+                />
+              </div>
+              <label style="color: black;" >Mean Smoothness</label>
+              <div class="form-group">
+               
+                <input
+                type="number"
+                step=".00001"
+                class="form-control"
+                id="smoothness"
+                value="0"
+                name="smoothness"
+                />
+              </div>
+              <button type="submit" class="btn-lg btn-block btn btn-primary mb-5">
+                Submit
+              </button>
+            </div>
+  
+             
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //contact -->
+  
+  
+{%endblock%}
