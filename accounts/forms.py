@@ -157,3 +157,24 @@ class DoctorRegistrationForm(UserCreationForm):
                 'placeholder': 'Confirm Password',
             }
         )
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
+        error_messages = {
+            'first_name': {
+                'required': 'First name is required',
+                'max_length': ' First Name is too long'
+            },
+            'last_name': {
+                'required': 'Last name is required',
+                'max_length': 'Last Name is too long'
+            }
+        }
+
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=False)
+        user.role = "doctor"
+        if commit:
+            user.save()
+        return user
