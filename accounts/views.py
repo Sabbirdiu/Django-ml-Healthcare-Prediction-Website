@@ -77,3 +77,32 @@ class LogoutView(RedirectView):
         auth.logout(request)
         messages.success(request, 'You are now logged out')
         return super(LogoutView, self).get(request, *args, **kwargs)
+class RegisterDoctorView(CreateView):
+   
+    model = User
+    form_class = DoctorRegistrationForm
+    template_name = 'accounts/doctor/register.html'
+    success_url = '/'
+
+    extra_context = {
+        'title': 'Register'
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+
+        form = self.form_class(data=request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get("password1")
+            user.set_password(password)
+            user.save()
+            return redirect('login')
+        else:
+            return render(request, 'accounts/doctor/register.html', {'form': form})
+
