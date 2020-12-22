@@ -1,4 +1,4 @@
-rom django.contrib import messages, auth
+from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
@@ -33,4 +33,5 @@ class RegisterPatientView(CreateView):
             return redirect('accounts:login')
         else:
             return render(request, 'accounts/patient/register.html', {'form': form})
+
 
