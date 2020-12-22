@@ -1,7 +1,7 @@
 from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView,FormView
 from accounts.forms import *
 from accounts.models import User
 
@@ -34,4 +34,36 @@ class RegisterPatientView(CreateView):
         else:
             return render(request, 'accounts/patient/register.html', {'form': form})
 
+
+class LoginView(FormView):
+ 
+    success_url = '/'
+    form_class = UserLoginForm
+    template_name = 'accounts/login.html'
+
+    extra_context = {
+        'title': 'Login'
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(self.get_success_url())
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def get_success_url(self):
+        if 'next' in self.request.GET and self.request.GET['next'] != '':
+            return self.request.GET['next']
+        else:
+            return self.success_url
+
+    def get_form_class(self):
+        return self.form_class
+
+    def form_valid(self, form):
+        auth.login(self.request, form.get_user())
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        """If the form is invalid, render the invalid form."""
+        return self.render_to_response(self.get_context_data(form=form))
 
