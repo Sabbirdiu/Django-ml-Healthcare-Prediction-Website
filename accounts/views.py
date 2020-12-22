@@ -1,7 +1,7 @@
 from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView,FormView
+from django.views.generic import CreateView,FormView,RedirectView
 from accounts.forms import *
 from accounts.models import User
 
@@ -67,3 +67,13 @@ class LoginView(FormView):
         """If the form is invalid, render the invalid form."""
         return self.render_to_response(self.get_context_data(form=form))
 
+
+
+class LogoutView(RedirectView):
+
+    url = '/'
+
+    def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        messages.success(request, 'You are now logged out')
+        return super(LogoutView, self).get(request, *args, **kwargs)

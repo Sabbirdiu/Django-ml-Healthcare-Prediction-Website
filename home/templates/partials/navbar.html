@@ -81,10 +81,8 @@
 									<span class="sr-only">(current)</span>
 								</a>
 							</li>
-							<li class="nav-item mx-lg-4 my-lg-0 my-3">
-								<a class="nav-link" href="about.html">Blog</a>
-							</li>
-							<li class="nav-item dropdown">
+							
+							<li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 								    aria-haspopup="true" aria-expanded="false">
 									Services
@@ -102,15 +100,49 @@
 								<a class="nav-link" href="contact.html">About Us</a>
 							</li>
 							
-							<li class="nav-item ">
+							<li class="nav-item mx-lg-4">
 								<a class="nav-link" href="appointment.html">Appointment</a>
 							</li>
 						
-						</ul>
+						
+						{% if request.user.is_authenticated and request.user.role == 'patient' %}
+						<!-- <li class="nav">
+							<a href="nav-link">  {{ request.user.first_name }}</a>
+						</li> -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								{{ request.user.first_name }}
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+								<a class="dropdown-item " href="{% url 'diabetes' %}"> EDIT PROFILE</a>
+								<a class="dropdown-item " href="{% url 'logout' %}">LOGOUT</a>
+								
+							
+							</div>
+						</li>
 						<!-- login -->
-						<a href="#" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3" data-toggle="modal" data-target="#exampleModalCenter1">
+						
+					</ul>
+					{% else %}
+					<li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							Register
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+							<a class="dropdown-item " href="{% url 'diabetes' %}">DOCTOR</a>
+							<a class="dropdown-item " href="{% url 'patient-register' %}">PATIENT</a>
+							
+						
+						</div>
+					</li>
+						<a href="{% url 'login' %}" class="login-button ml-lg-5 mt-lg-0 mt-4 mb-lg-0 mb-3"  >
 							<i class="fas fa-sign-in-alt mr-2"></i>Login</a>
 						<!-- //login -->
+						{% endif %}
 					</div>
 				</div>
 			</nav>
