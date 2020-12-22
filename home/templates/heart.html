@@ -1,0 +1,222 @@
+{%extends 'base.html'%}
+ {%block content%}
+	<!-- banner 2 -->
+	<div class="inner-banner-w3ls">
+		<div class="container">
+
+		</div>
+		<!-- //banner 2 -->
+	</div>
+	<!-- page details -->
+	<div class="breadcrumb-agile">
+		<div aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Heart Disease</li>
+			</ol>
+		</div>
+	</div>
+	<!-- //page details -->
+
+	<!-- contact -->
+	<div class="appointment py-5">
+		<div class="py-xl-5 py-lg-3">
+			<div class="w3ls-titles text-center mb-5">
+				<h3 class="title">Heart Disease Prediction</h3>
+				<span>
+					<i class="fas fa-user-md"></i>
+				</span>
+				<hr />
+      {% if context %}
+      <div class="display-4 my-2 text-center">
+        Your diabetes disease is {{ context }} 
+      </div>
+      {% endif %}
+			</div>
+			<div class="d-flex">
+				<div class="appoint-img">
+
+				</div>
+				<div class="contact-right-w3l appoint-form">
+					<h5 class="title-w3 text-center mb-5">Get In Touch</h5>
+                    <div class="mt-4">
+                        <form class="row" method="POST" action="{% url 'heart' %}">
+                          {% csrf_token %}
+                          <div class="col-md-4">
+                            <label style="color: black;" for="age">Age</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="age"
+                                value="0"
+                                name="age"
+                              />
+                            </div>
+                            <label style="color: black;" for="sex">Sex</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="sex"
+                                value="0"
+                                name="sex"
+                              />
+                            </div>
+                            <label style="color: black;" for="cp">CP</label>
+                            <div class="form-group">
+                             
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="cp"
+                                value="0"
+                                name="cp"
+                              />
+                            </div>
+                            <label style="color: black;" for="trestbps">TRESTBPS</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="trestbps"
+                                value="0"
+                                name="trestbps"
+                              />
+                            </div>
+                            <label style="color: black;" for="chol">CHOL</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="chol"
+                                value="0"
+                                name="chol"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label style="color: black;" for="fbs">FBS</label>
+                            <div class="form-group">
+                             
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="fbs"
+                                value="0"
+                                name="fbs"
+                              />
+                            </div>
+                            <label style="color: black;" for="restecg">RESTECG</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="restecg"
+                                value="0"
+                                name="restecg"
+                              />
+                            </div>
+                            <label style="color: black;" for="thalach">THALACH</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="thalach"
+                                value="0"
+                                name="thalach"
+                              />
+                            </div>
+                            <label style="color: black;" for="exang">EXANG</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="exang"
+                                value="0"
+                                name="exang"
+                              />
+                            </div>
+                            <label style="color: black;" for="oldpeak">OLDPEAK</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="oldpeak"
+                                value="0"
+                                name="oldpeak"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label style="color: black;" for="slope">SLOPE</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="slope"
+                                value="0"
+                                name="slope"
+                              />
+                            </div>
+                            <label style="color: black;" for="ca">CA</label>
+                            <div class="form-group">
+                              
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="ca"
+                                value="0"
+                                name="ca"
+                              />
+                            </div>
+                            <label style="color: black;" for="thal">THAL</label>
+                            <div class="form-group mb-5">
+                             
+                              <input
+                                type="number"
+                                step=".00001"
+                                class="form-control"
+                                id="thal"
+                                value="0"
+                                name="thal"
+                              />
+                            </div>
+                    
+                            <button type="submit" class="btn-lg btn-block btn btn-primary mb-5">
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+				</div>
+				<div class="clerafix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- //contact -->
+
+{% endblock %}
