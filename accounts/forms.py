@@ -121,3 +121,39 @@ class UserLoginForm(forms.Form):
 
     def get_user(self):
         return self.user
+class DoctorRegistrationForm(UserCreationForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DoctorRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].label = "First Name"
+        self.fields['last_name'].label = "Last Name"
+        self.fields['password1'].label = "Password"
+        self.fields['password2'].label = "Confirm Password"
+        for fieldname in ['password1', 'password2']:
+            self.fields[fieldname].help_text = None
+
+        self.fields['first_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter First Name',
+            }
+        )
+        self.fields['last_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Last Name',
+            }
+        )
+        self.fields['email'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Email',
+            }
+        )
+        self.fields['password1'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Password',
+            }
+        )
+        self.fields['password2'].widget.attrs.update(
+            {
+                'placeholder': 'Confirm Password',
+            }
+        )
