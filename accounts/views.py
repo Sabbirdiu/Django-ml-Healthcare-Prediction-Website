@@ -30,7 +30,7 @@ class RegisterPatientView(CreateView):
             password = form.cleaned_data.get("password1")
             user.set_password(password)
             user.save()
-            return redirect('accounts:login')
+            return redirect('login')
         else:
             return render(request, 'accounts/patient/register.html', {'form': form})
 
