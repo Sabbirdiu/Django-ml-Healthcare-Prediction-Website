@@ -5,8 +5,9 @@ from django.views.generic import CreateView,FormView,RedirectView,UpdateView
 from accounts.forms import *
 from accounts.models import User
 from .decorators import user_is_patient
-
-
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 class RegisterPatientView(CreateView):
    
@@ -116,7 +117,7 @@ class EditPatientProfileView(UpdateView):
     template_name = 'accounts/patient/edit-profile.html'
     success_url = reverse_lazy('patient-profile-update')
 
-    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
     @method_decorator(user_is_patient)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
