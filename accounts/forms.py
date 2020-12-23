@@ -178,3 +178,33 @@ class DoctorRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class PatientProfileUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(PatientProfileUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter First Name',
+            }
+        )
+        self.fields['last_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Last Name',
+            }
+        )
+        self.fields['email'].widget.attrs.update(
+            {
+                'placeholder': 'Email',
+            }
+        )
+        self.fields['phone_number'].widget.attrs.update(
+            {
+                'placeholder': 'Phone Number',
+            }
+        )
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "email", "phone_number"]
+
