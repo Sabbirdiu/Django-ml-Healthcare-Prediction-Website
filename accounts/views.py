@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView,FormView,RedirectView,UpdateView
 from accounts.forms import *
 from accounts.models import User
-from .decorators import user_is_patient
+from .decorators import user_is_patient,user_is_doctor
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -136,3 +136,31 @@ class EditPatientProfileView(UpdateView):
         if obj is None:
             raise Http404("Patient doesn't exists")
         return obj
+
+class EditDoctorProfileView(UpdateView):
+    model = User
+    form_class = DoctorProfileUpdateForm
+    context_object_name = 'doctor'
+    template_name = 'accounts/doctor/edit-profile.html'
+    success_url = reverse_lazy('doctor-profile-update')
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    @method_decorator(user_is_doctor)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            raise Http404("User doesn't exists")
+        
+        return self.render_to_response(self.get_context_data())
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        print(obj)
+        if obj is None:
+            raise Http404("Patient doesn't exists")
+        return obj
+
