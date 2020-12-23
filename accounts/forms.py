@@ -208,3 +208,26 @@ class PatientProfileUpdateForm(forms.ModelForm):
         model = User
         fields = ["first_name", "last_name", "email", "phone_number"]
 
+class DoctorProfileUpdateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DoctorProfileUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter First Name',
+            }
+        )
+        self.fields['last_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Last Name',
+            }
+        )
+        self.fields['email'].widget.attrs.update(
+            {
+                'placeholder': 'Email',
+            }
+        )
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "email"]
