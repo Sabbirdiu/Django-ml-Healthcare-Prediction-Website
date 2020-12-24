@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'appoinment',
     'crispy_forms',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -129,4 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = "accounts.user"
-CRISPY_TEMPLATE_PACK='bootstrap4'
+# CRISPY_TEMPLATE_PACK='bootstrap4'

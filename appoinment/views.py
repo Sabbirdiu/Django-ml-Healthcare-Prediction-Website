@@ -9,9 +9,9 @@ from django.utils.decorators import method_decorator
 from accounts.models import User
 from django.views.generic import CreateView,ListView
 
-from .forms import CreateAppointmentForm
-from .models import Appointment
-from accounts.decorators import  user_is_doctor
+from .forms import CreateAppointmentForm,TakeAppointmentForm
+from .models import Appointment,TakeAppointment
+from accounts.decorators import  user_is_doctor,user_is_doctor
 
 def app(request):
     return render(request,'b1.html')
@@ -67,3 +67,30 @@ class DoctorPageView(ListView):
 
     def get_queryset(self):
         return self.model.objects.all().order_by('-id')
+class TakeAppointmentView(CreateView):
+    template_name = 'appointment/take_appointment.html'
+    form_class = TakeAppointmentForm
+    extra_context = {
+        'title': 'Take Appointment'
+    }
+    success_url = reverse_lazy('home')
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return reverse_lazy('login')
+        if self.request.user.is_authenticated and self.request.user.role != 'patient':
+            return reverse_lazy('login')
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TakeAppointmentView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)

@@ -7,4 +7,5 @@ urlpatterns = [
     path('doctor/appointment/create', AppointmentCreateView.as_view(), name='doctor-appointment-create'),
     path('doctor/appointment/', AppointmentListView.as_view(), name='doctor-appointment'),
     path('Doctor/', DoctorPageView.as_view(), name='doctor'),
+    path('patient-take-appointment/<pk>', TakeAppointmentView.as_view(), name='take-appointment'),
 ]

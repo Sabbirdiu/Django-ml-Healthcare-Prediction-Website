@@ -1,5 +1,5 @@
 from django import forms
-from .models import Appointment
+from .models import Appointment,TakeAppointment
 
 
 class CreateAppointmentForm(forms.ModelForm):
@@ -78,3 +78,51 @@ class CreateAppointmentForm(forms.ModelForm):
             appointment.save()
         return appointment
 
+class TakeAppointmentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TakeAppointmentForm, self).__init__(*args, **kwargs)
+        self.fields['appointment'].label = "Choose Your Doctor"
+        self.fields['full_name'].label = "Full Name"
+        self.fields['phone_number'].label = "Phone Number"
+        self.fields['message'].label = "Message"
+
+        self.fields['appointment'].widget.attrs.update(
+            {
+                'placeholder': 'Choose Your Doctor',
+            }
+        )
+
+        self.fields['full_name'].widget.attrs.update(
+            {
+                'placeholder': 'Write Your Name',
+            }
+        )
+
+        self.fields['phone_number'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Phone Number',
+            }
+        )
+        self.fields['message'].widget.attrs.update(
+            {
+                'placeholder': 'Write a short message',
+            }
+        )
+
+    class Meta:
+        model = TakeAppointment
+        fields = ['appointment', 'full_name', 'phone_number', 'message']
+
+    def is_valid(self):
+        valid = super(TakeAppointmentForm, self).is_valid()
+
+        # if already valid, then return True
+        if valid:
+            return valid
+        return valid
+
+    def save(self, commit=True):
+        appointment = super(TakeAppointmentForm, self).save(commit=False)
+        if commit:
+            appointment.save()
+        return appointment

@@ -42,9 +42,12 @@
 			<div class="row inner-sec-w3layouts-agileinfo">
                 {% for apt in doctor %}
 				<div class="col-md-4 team-grids text-center mb-5">
+                   
 					<img style="height: 400px; width: 400px;" src="{{ apt.image.url }}" class="img-fluid" alt="">
 					<div class="team-info">
+                        {% if request.user.is_authenticated and request.user.role == 'patient' %}
 						<div class="caption">
+
 							<h4>{{ apt.full_name }}</h4>
 							
 						</div>
@@ -54,7 +57,33 @@
                         <h6>Available {{ apt.start_time }} to {{ apt.end_time }}
                             in {{ apt.hospital_name }}</h6>
                         <h6>
-                            AT {{ apt.location }} </h6>
+                            AT {{ apt.location }} </i>
+                            <a href="{% url 'take-appointment' apt.id %}"> Take
+                                Appointment</a>
+                       </h6>
+                       {% elif request.user.is_authenticated and request.user.role == 'doctor'   %}
+                       <div class="caption">
+
+                        <h4>{{ apt.full_name }}</h4>
+                        
+                    </div>
+                
+                    <h6>{{ apt.department }} Expert</h6>
+                    <h6>{{ apt.qualification_name }}, {{ apt.institute_name }}</h6>
+                    <h6>Available {{ apt.start_time }} to {{ apt.end_time }}
+                        in {{ apt.hospital_name }}</h6>
+                    <h6>
+                        AT {{ apt.location }}
+                   </h6>
+                   {% else %}
+                   <h6>{{ apt.department }} Expert</h6>
+                   <h6>{{ apt.qualification_name }}, {{ apt.institute_name }}</h6>
+                   <h6>Available {{ apt.start_time }} to {{ apt.end_time }}
+                       in {{ apt.hospital_name }}</h6>
+                   <h6>
+                       AT {{ apt.location }}
+                  </h6>
+                  {% endif %}
 					</div>
 				</div>
 				{% endfor %}
@@ -63,56 +92,5 @@
 	</section>
 	<!-- team -->
 
-    {% for apt in doctor %}
-    <!-- Single Dentist Area -->
-    <div class="col-12 col-sm-6 col-md-4">
-        <div class="single-dentist-area mb-100">
-            <img style="height: 500px; width: 600px" src="{{ apt.image.url }}" alt="">
-            <!-- Dentist Content -->
-            <div class="dentist-content">
-                <!-- Social Info -->
-                <div class="dentist-social-info">
-
-                </div>
-                <!-- Dentist Info -->
-                <div class="dentist-info bg-gradient-overlay">
-                    {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                        <h5>{{ apt.full_name }}</h5>
-                        <p>{{ apt.department }} Expert</p>
-                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
-                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
-                            in {{ apt.hospital_name }}</p>
-                        <p>
-                            AT {{ apt.location }} <i class="fa fa-th"></i>
-                            <a href="{% url 'appointment:take-appointment' apt.id %}"> Take
-                                Appointment</a>
-
-                        </p>
-                    {% elif request.user.is_authenticated and request.user.role == 'doctor'   %}
-
-                        <h5>{{ apt.full_name }}</h5>
-                        <p>{{ apt.department }} Expert</p>
-                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
-                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
-                            in {{ apt.hospital_name }}</p>
-                        <p>AT {{ apt.location }}</p>
-
-                        {% else %}
-
-                         <h5>{{ apt.full_name }}</h5>
-                        <p>{{ apt.department }} Expert</p>
-                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
-                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
-                            in {{ apt.hospital_name }}</p>
-                        <p>
-                            AT {{ apt.location }} </p>
-
-
-                    {% endif %}
-
-                </div>
-            </div>
-        </div>
-    </div>
-{% endfor %}
+  
 {% endblock %}
