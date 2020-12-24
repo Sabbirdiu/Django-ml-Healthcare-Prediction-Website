@@ -94,3 +94,11 @@ class TakeAppointmentView(CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+class PatientListView(ListView):
+    model = TakeAppointment
+    context_object_name = 'patients'
+    template_name = "appointment/patient_list.html"
+
+    def get_queryset(self):
+        return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')            
