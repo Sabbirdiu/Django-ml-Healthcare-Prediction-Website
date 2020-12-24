@@ -43,3 +43,16 @@ class AppointmentCreateView(CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)    
+
+class AppointmentListView(ListView):
+    model = Appointment
+    template_name = 'appointment/appointment.html'
+    context_object_name = 'appointment'
+
+    @method_decorator(login_required(login_url=reverse_lazy('login')))
+    @method_decorator(user_is_doctor)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.filter(user_id=self.request.user.id).order_by('-id')            

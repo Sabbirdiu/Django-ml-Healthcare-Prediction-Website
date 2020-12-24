@@ -320,7 +320,7 @@ p.account-w3ls a {
     color: black;
     margin-bottom: 8px;
     /* text-align: right; */
-    display: block;
+    /* display: block; */
 }
 
 button.submit {
