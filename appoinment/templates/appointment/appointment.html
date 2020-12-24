@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Appointment List{% endblock %}
+
+
+
+{% block content %}
+	<!-- blog -->
+	<div class="blog-w3ls py-5" id="blog">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="w3ls-titles text-center mb-5">
+				<h3 class="title text-white">Appointment List</h3>
+				<span>
+					<i class="fas fa-user-md text-white"></i>
+				</span>
+				
+            </div>
+           
+			<div class="row package-grids mt-5">
+                {% for apt in appointment %}	
+				
+				<div class="col-md-4 pricing">
+					<div class="price-top">
+						<a href="single.html">
+							<img style="height: 300px; width: 400px;" src="{{ apt.image.url }}" alt="" class="img-fluid" />
+						</a>
+						<h3>{{ apt.full_name }}
+						
+						</h3>
+					</div>
+					<div class="price-bottom p-4">
+						<h4 class="text-dark mb-3">Available {{ apt.start_time }} to {{ apt.end_time }} in {{ apt.hospital_name }}</h4>
+						<a href="single.html">
+                            <h5>{{ apt.full_name }}</h5>
+                            <p>{{ apt.department }} Expert</p>
+                              <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                             
+                              <p> AT {{ apt.location }}
+                                  <i class="fa fa-trash-o" style="color: red" aria-hidden="true"></i>
+                                  <a  style="color: red" href="">Delete Appointment</a>
+                              </p>
+							
+					</div>
+                </div> 
+                {% endfor %}
+            </div>
+         
+		</div>
+	</div>
+	<!-- //blog -->
+   
+
+{% endblock %}

@@ -7,10 +7,11 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from accounts.models import User
-from django.views.generic import CreateView
+from django.views.generic import CreateView,ListView
 
 from .forms import CreateAppointmentForm
 from .models import Appointment
+from accounts.decorators import  user_is_doctor
 
 def app(request):
     return render(request,'b1.html')
