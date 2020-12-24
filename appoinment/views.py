@@ -57,3 +57,13 @@ class AppointmentListView(ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(user_id=self.request.user.id).order_by('-id')            
+
+
+class DoctorPageView(ListView):
+    paginate_by = 9
+    model = Appointment
+    context_object_name = 'doctor'
+    template_name = "doctor.html"
+
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-id')

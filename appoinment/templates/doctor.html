@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Appointment List{% endblock %}
+
+
+
+{% block content %}
+
+	<!-- banner 2 -->
+	<div class="inner-banner-w3ls">
+		<div class="container">
+
+		</div>
+		<!-- //banner 2 -->
+	</div>
+	<!-- page details -->
+	<div class="breadcrumb-agile">
+		<div aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Home</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Our Doctors</li>
+			</ol>
+		</div>
+	</div>
+	<!-- //page details -->
+
+
+
+
+	<!-- team -->
+	<section class="team py-5">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="w3ls-titles text-center mb-5">
+				<h3 class="title">Our Doctors</h3>
+				<span>
+					<i class="fas fa-user-md"></i>
+				</span>
+				<p class="mt-2">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="row inner-sec-w3layouts-agileinfo">
+                {% for apt in doctor %}
+				<div class="col-md-4 team-grids text-center mb-5">
+					<img style="height: 400px; width: 400px;" src="{{ apt.image.url }}" class="img-fluid" alt="">
+					<div class="team-info">
+						<div class="caption">
+							<h4>{{ apt.full_name }}</h4>
+							
+						</div>
+					
+                        <h6>{{ apt.department }} Expert</h6>
+                        <h6>{{ apt.qualification_name }}, {{ apt.institute_name }}</h6>
+                        <h6>Available {{ apt.start_time }} to {{ apt.end_time }}
+                            in {{ apt.hospital_name }}</h6>
+                        <h6>
+                            AT {{ apt.location }} </h6>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- team -->
+
+    {% for apt in doctor %}
+    <!-- Single Dentist Area -->
+    <div class="col-12 col-sm-6 col-md-4">
+        <div class="single-dentist-area mb-100">
+            <img style="height: 500px; width: 600px" src="{{ apt.image.url }}" alt="">
+            <!-- Dentist Content -->
+            <div class="dentist-content">
+                <!-- Social Info -->
+                <div class="dentist-social-info">
+
+                </div>
+                <!-- Dentist Info -->
+                <div class="dentist-info bg-gradient-overlay">
+                    {% if request.user.is_authenticated and request.user.role == 'patient' %}
+                        <h5>{{ apt.full_name }}</h5>
+                        <p>{{ apt.department }} Expert</p>
+                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
+                            in {{ apt.hospital_name }}</p>
+                        <p>
+                            AT {{ apt.location }} <i class="fa fa-th"></i>
+                            <a href="{% url 'appointment:take-appointment' apt.id %}"> Take
+                                Appointment</a>
+
+                        </p>
+                    {% elif request.user.is_authenticated and request.user.role == 'doctor'   %}
+
+                        <h5>{{ apt.full_name }}</h5>
+                        <p>{{ apt.department }} Expert</p>
+                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
+                            in {{ apt.hospital_name }}</p>
+                        <p>AT {{ apt.location }}</p>
+
+                        {% else %}
+
+                         <h5>{{ apt.full_name }}</h5>
+                        <p>{{ apt.department }} Expert</p>
+                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
+                            in {{ apt.hospital_name }}</p>
+                        <p>
+                            AT {{ apt.location }} </p>
+
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
