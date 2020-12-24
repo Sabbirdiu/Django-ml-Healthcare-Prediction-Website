@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load bootstrap %}
 
 {% block title %}Patient Profile Edit{% endblock %}
 
@@ -20,7 +20,7 @@
 
 
                     <form action="" method="POST">{% csrf_token %}
-                           {{ form|crispy }}
+                           {{ form|bootstrap }}
 
                         <div class="row form-group">
                             <div class="col-md-12">
