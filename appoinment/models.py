@@ -33,3 +33,15 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class TakeAppointment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+    message = models.TextField()
+    phone_number = models.CharField(max_length=120)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.full_name        
