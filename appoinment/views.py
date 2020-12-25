@@ -7,7 +7,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from accounts.models import User
-from django.views.generic import CreateView,ListView
+from django.views.generic import CreateView,ListView,DeleteView
 
 from .forms import CreateAppointmentForm,TakeAppointmentForm
 from .models import Appointment,TakeAppointment
@@ -102,3 +102,9 @@ class PatientListView(ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')            
+
+
+class PatientDeleteView(DeleteView):
+    model = TakeAppointment
+    success_url = reverse_lazy('patient-list')   
+    template_name = "appointment/patient_delete.html"     

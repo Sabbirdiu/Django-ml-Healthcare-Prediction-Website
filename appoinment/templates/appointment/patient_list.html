@@ -52,7 +52,7 @@
                         <td> {{ patient.date }}</td>
                         <td>
 
-                            <a href="">
+                            <a href="{% url 'delete-patient' patient.id %}">
                                 <span class="">delete</span>
                             </a>
                         </td>
