@@ -36,8 +36,8 @@
                               <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
                              
                               <p> AT {{ apt.location }}
-                                  <i class="fa fa-trash-o" style="color: red" aria-hidden="true"></i>
-                                  <a  style="color: red" href="">Delete Appointment</a>
+                                 
+                                  <a  style="color: red" href="{% url 'delete-appointment' apt.id %}">Delete Appointment</a>
                               </p>
 							
 					</div>

@@ -108,3 +108,9 @@ class PatientDeleteView(DeleteView):
     model = TakeAppointment
     success_url = reverse_lazy('patient-list')   
     template_name = "appointment/patient_delete.html"     
+
+class AppointmentDeleteView(DeleteView):
+  
+    model = Appointment
+    success_url = reverse_lazy('doctor-appointment')
+    template_name = "appointment/appointment_delete.html" 
