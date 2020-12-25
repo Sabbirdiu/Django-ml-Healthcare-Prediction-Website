@@ -19,8 +19,8 @@
 						<ul class="list-unstyled">
 							<li>
 								<i class="fas fa-location-arrow float-left"></i>
-								<p class="ml-4">The company name
-									<span>Lorem ipsum dolor,</span>New York,Morris Park. </p>
+								<p class="ml-4">DIU
+									<span>Dhanmondi 27,</span>Dhaka </p>
 								<div class="clearfix"></div>
 							</li>
 							<li class="my-3">
@@ -40,27 +40,23 @@
 						<div class="nav-w3-l">
 							<ul class="list-unstyled">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="/">Home</a>
+								</li>
+								
+								<li class="mt-2">
+									<a href="{% url 'doctor' %}">Doctors</a>
 								</li>
 								<li class="mt-2">
-									<a href="about.html">About Us</a>
+									<a href="{% url 'doctor-appointment' %}">Appointment</a>
 								</li>
-								<li class="mt-2">
-									<a href="gallery.html">Gallery</a>
-								</li>
-								<li class="mt-2">
-									<a href="appointment.html">Appointment</a>
-								</li>
-								<li class="mt-2">
-									<a href="contact.html">Contact Us</a>
-								</li>
+								
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="border-top mt-5 pt-lg-4 pt-3 pb-lg-0 pb-3 text-center">
 					<p class="copy-right-grids mt-lg-1">&copy; {% now 'Y' %},  All rights reserved |
-						<a href="http://diusabbir.herokuapp.com/" target="_blank">Sabbir</a>
+						<a style="color:white;" href="http://diusabbir.herokuapp.com/" target="_blank">Sabbir</a>
 					</p>
 				</div>
 			</div>
