@@ -39,13 +39,7 @@ after we need to run the server
 To deploy this project run
 
 ```bash
-  pip install django
-  pip install pillow
-  pip install pandas
-  pip install numpy
-  pip install scikit-learn
-  pip install django-bootstrap-form
-  pip install django-crispy-forms
+  pip install -r requirements.txt
 ```
 
 These all need to be implemented only when environment is activated
