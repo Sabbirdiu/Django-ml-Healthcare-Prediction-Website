@@ -320,7 +320,7 @@ p.account-w3ls a {
     color: black;
     margin-bottom: 8px;
     /* text-align: right; */
-    /* display: block; */
+    display: block;
 }
 
 button.submit {
@@ -1522,7 +1522,7 @@ select.form-control:not([size]):not([multiple]) {
 /*--//gallery--*/
 /* appointment */
 .appoint-img {
-    background: url(../images/bg6.jpg) no-repeat left bottom fixed;
+    background: url(../images/bg4.jpg) no-repeat left bottom fixed;
     float: left;
     width: 44%;
 }

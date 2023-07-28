@@ -32,7 +32,7 @@
 							<!-- //social icons -->
 							<div class="col-6 header-top_w3layouts pl-3 text-lg-left text-center">
 								<p class="text-white">
-									<i class="fas fa-map-marker-alt mr-2"></i>Dhanmondi 27,Dhaka, Bangladesh</p>
+									<i class="fas fa-map-marker-alt mr-2"></i>MVP colony, Visakhapatnam</p>
 							</div>
 						</div>
 					</div>
@@ -88,11 +88,21 @@
 									Disease Prediction
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
+									{% if user.is_authenticated %}
 									<a class="dropdown-item " href="{% url 'diabetes' %}">Diabetes Prediction</a>
+                    				{% else %}
+									<a class="dropdown-item " href="{% url 'login' %}">Diabetes Prediction</a>
+                    				{% endif %}
+									{% if user.is_authenticated %}
 									<a class="dropdown-item " href="{% url 'breast' %}">Breast Cancer Prediction</a>
-									<a class="dropdown-item " href="{% url 'heart' %}">Heart Prediction</a>
-								
+                    				{% else %}
+									<a class="dropdown-item " href="{% url 'login' %}">Breast Cancer Prediction</a>
+                    				{% endif %}
+									{% if user.is_authenticated %}
+									<a class="dropdown-item " href="{% url 'heart' %}">Heart disease Prediction</a>
+                    				{% else %}
+									<a class="dropdown-item " href="{% url 'login' %}">Heart disease Prediction</a>
+                    				{% endif %}
 								</div>
 							</li>
 							
